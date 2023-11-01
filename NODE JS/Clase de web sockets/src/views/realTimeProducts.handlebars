@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WebSocket y Handlebars</title>
+</head>
+<body>
+  <div id="chat"></div>
+  <input type="text" id="mensajeInput" placeholder="Escribe un mensaje">
+  <button id="enviar">Enviar</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('mensaje', (data) => {
+      // Actualiza la vista con Handlebars
+      const template = Handlebars.compile('<p>{{mensaje}}</p>');
+      const html = template({ mensaje: data });
+      document.getElementById('chat').innerHTML += html;
+    });
+
+    document.getElementById('enviar').addEventListener('click', () => {
+      const mensaje = document.getElementById('mensajeInput').value;
+      socket.emit('mensaje', mensaje);
+    });
+  </script>
+</body>
+</html>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

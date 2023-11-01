@@ -1,0 +1,1 @@
+[{"id":2,"title":"producto prueba 3","description":"este es un producto de prueba 2","price":300,"thumbNail":"sin imagen","code":"abc1231234","stock":10}]
